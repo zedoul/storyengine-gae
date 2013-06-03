@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<a href="/story">{% trans 'back' %}</a>
+	<a href="/story/{{keyid}}/update/input">{% trans 'update' %}</a>
+
+	<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>{% trans 'Story' %}</th>
+	<td>({{keyid}})</td>
+	</tr>
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>{%trans 'index' %}</th>
+	<td>{{story.index}}</td>
+	<th>{% trans 'visible' %}</th>
+	<td>{{story.visible}}</td>
+	<th>{% trans 'version' %}</th>
+	<td>{{story.version}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'created' %}</th>
+	<td>({{story.created}})</td>
+	<th>{% trans 'modified' %}</th>
+	<td>({{story.modified}})</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'storynameen' %}</th>
+	<td>{{story.nameen}}</td>
+	<th>{% trans 'storydescriptionen' %}</th>
+	<td>{{story.storydescriptionen}}</td>
+	</tr>
+	<tr>
+	<th>{% trans 'storynameko' %}</th>
+	<td>{{story.nameko}}</td>
+	<th>{% trans 'storydescriptionko' %}</th>
+	<td>{{story.storydescriptionko}}</td>
+	</tr>
+	<tr>
+	<th>{% trans 'storynameja' %}</th>
+	<td>{{story.nameja}}</td>
+	<th>{% trans 'storydescriptionja' %}</th>
+	<td>{{story.storydescriptionja}}</td>
+	</tr>
+	<tr><td colspan=16><hr></td></tr>
+	<tr>
+	<th>{% trans 'price' %}</th>
+	<td>{{story.price}}</td>
+	<th>{% trans '1st category(ID)' %}</th>
+	<td>{{story.main_categoryid}}</td>
+	</tr>
+	<tr><td colspan=16><hr noshade></td></tr>
+	<tr>
+	<th>{% trans 'pages' %}</th>
+	{% ifequal pagesize 0 %}
+		<td>
+		<a href="/story/{{keyid}}/pageadd">{% trans 'add' %}</a>
+		<a href="/story/{{keyid}}/pageimport/input">{% trans 'import' %}</a>
+		<br \>
+
+		<a href="/story/{{keyid}}/level/1">{% trans '8' %}</a>
+		<a href="/story/{{keyid}}/level/2">{% trans '16' %}</a>
+		<a href="/story/{{keyid}}/level/3">{% trans '24' %}</a>
+		<br \>
+		</td>
+	{% endifequal %}
+	</tr>
+	<tr>
+		<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+		{%for indexes in pages %}
+			<tr>
+			<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+			<tr>
+			{%for b in indexes %}
+				<td>
+					<table BORDER="0" CELLPADDING="0" CELLSPACING="10" width="200px">
+					<tr>
+					ID:<a href="/page/{{ b.keyid }}">{{ b.keyid }}</a>
+					<br />
+					{%trans 'index' %}:<a href="/page/{{ b.keyid }}">{{ b.index }}</a> / 
+					{% ifequal pagepriceshow 1 %}
+						{%trans 'price' %}:{{ b.price }} / 
+					{% endifequal %}
+					{% ifequal pagescoreshow 1 %}
+						{%trans 'score' %}:{{ b.score }} / 
+					{% endifequal %}
+					{% ifequal pagecontentsizeshow 1 %}
+						{%trans 'contents' %}:{{ b.contentsize }} / 
+					{% endifequal %}
+					<br />
+					{% ifequal picshow 1 %}
+						<img src="/photo?img_id={{b.contentid}}" width="121px" height="120px"></img>
+						<br />
+					{% endifequal %}
+
+					{% ifequal pagenameshow 1 %}
+					{% trans 'pagenameko' %}
+					<br />
+					{{b.nameko}}
+					<br />
+					{% endifequal %}
+
+					{% ifequal pagedescshow 1 %}
+					{% trans 'pagedescriptionko' %}
+					<br />
+					{{b.descriptionko}}
+					<br />
+					{% endifequal %}
+					</tr>
+
+					{% ifequal pagenextshow 1 %}
+					<tr>
+					{% trans 'next' %}
+					{%for pnext in b.nexts %}
+						<td align=center>
+						<a href="/page/{{ pnext.pageid }}">{{ pnext.pageid }}</a>
+						{% ifequal picshow 1 %}
+							<img src="/thumb?img_id={{pnext.contentid}}" width="50px" height="20px"></img>
+						{% endifequal %}
+						</td>
+					{%endfor%}
+					</tr>
+					{% endifequal %}
+
+					</table>
+				<td/>
+			{%endfor%}
+			</tr>
+			</table>
+			</tr>
+			<tr><td colspan=16><hr noshade></td></tr>
+		{%endfor%}
+		</table>
+	</tr>
+	</table>
+
+{% endblock content %}
+

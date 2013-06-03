@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+{% block content %}
+	{% if user_info %}
+	{% trans 'Hello' %}, <a href="/user/">{{user_info.nickname }}</a> /
+	<a href="{{static_path.logout}}">{% trans 'logout' %}</a>
+	{% else %}
+	<a href="/user/login/">{% trans 'login' %}</a>
+	{% endif %}<br \>
+	<br \>
+	<br \>
+	[{% trans 'ERROR' %}]
+	<br \>
+	<br \>
+	<ul/>
+	<li>{{ err_msg }}
+	</ul>
+{% endblock content %}
+{% block script %}{% endblock script %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<a href="/story/{{storyid}}">{% trans 'back' %}</a>
+	<a href="/page/{{keyid}}/update/input">{% trans 'update' %}</a>
+	<a href="/page/{{keyid}}/del">{% trans 'del' %}</a>
+	<br \>
+
+	<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>Page</th>
+	<td>({{keyid}})</td>
+	</tr>
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>{% trans 'index' %}</th>
+	<td>{{page.index}}</td>
+	<th>{% trans 'visible' %}</th>
+	<td>{{page.visible}}</td>
+	<th>{% trans 'version' %}</th>
+	<td>{{page.version}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'created' %}</th>
+	<td>({{page.created}})</td>
+	<th>{% trans 'modified' %}</th>
+	<td>({{page.modified}})</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'pagenameen' %}</th>
+	<td>{{page.nameen}}</td>
+	<th>{% trans 'pagedescriptionen' %}</th>
+	<td>{{page.descriptionen}}</td>
+	</tr>
+	<tr>
+	<th>{% trans 'pagenameko' %}</th>
+	<td>{{page.nameko}}</td>
+	<th>{% trans 'pagedescriptionko' %}</th>
+	<td>{{page.descriptionko}}</td>
+	</tr>
+	<tr>
+	<th>{% trans 'pagenameja' %}</th>
+	<td>{{page.nameja}}</td>
+	<th>{% trans 'pagedescriptionja' %}</th>
+	<td>{{page.descriptionja}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'pages (parents)' %}</th>
+	<td>
+		{%for b in parents %}
+			<tr>
+			<td><a href="/page/{{ b.keyid }}">{{ b.keyid }}</a></td>
+			</tr>
+		{%endfor%}
+	</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'pages (childs)' %}</th>
+	<td><a href="/page/{{keyid}}/pagelink/new/input">{% trans 'add' %}</a></td>
+	<td>
+		{%for b in childs %}
+			<tr>
+			<td><a href="/page/{{ b.keyid }}">{{ b.keyid }}</a></td>
+			</tr>
+		{%endfor%}
+	</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>{% trans 'Contents' %}</th>
+	<td>
+	<a href="/page/{{keyid}}/content/search/input">{% trans 'add' %}</a>
+	{% ifequal pagemultisearchshow 1 %}
+		<a href="/page/{{keyid}}/content/multisearch/input">{% trans 'multiadd' %}</a>
+	{% endifequal %}
+	{% ifequal pagemultiupdateshow 1 %}
+		<a href="/page/{{keyid}}/content/multiupdate/input">{% trans 'multiupdate' %}</a>
+	{% endifequal %}
+	<a href="/page/{{keyid}}/content/new/input">{% trans 'new' %}</a>
+	{% ifequal pagesyncshow 1 %}
+	<a href="/page/{{keyid}}/contentssync/input">{% trans 'sync' %}</a>
+	{% endifequal %}
+	{% ifequal pageimportshow 1 %}
+	<a href="/page/{{keyid}}/contentsimport/input">{% trans 'import' %}</a>
+	{% endifequal %}
+
+
+	</td>
+	</tr>
+	<tr>
+		<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+		{%for b in contents %}
+			<tr>
+			<td>
+			<a href="/content/{{ b.keyid }}">{{ b.keyid }}</a>
+			<td/>
+			<td>
+			{{ b.part }}.
+			<td/>
+			<td>
+			{{ b.nameen }}
+			<td/>
+			<td>
+			{{ b.nameko }}
+			<td/>
+			<td>
+			{{ b.nameja }}
+			<td/>
+			{% ifequal b.visible 1 %}
+			<td>
+			Released
+			<td/>
+			{% else %}
+			<td>
+			Hidden
+			<td/>
+			{% endifequal %}
+			<td>
+			<a href="/page/{{keyid}}/contentdel/{{ b.keyid }}">delete</a>
+			<td/>
+			</tr>
+		{%endfor%}
+		</table>
+	</tr>
+	</table>
+
+{% endblock content %}

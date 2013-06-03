@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	{% trans 'Categories' %}
+	<a href="/story">{% trans 'Stories' %}</a>
+	<a href="/page">{% trans 'Pages' %}</a>
+	<a href="/content">{% trans 'Contents' %}</a>
+	<a href="/play/new/input">{% trans 'Play' %}</a>
+
+	{% ifequal mode 2 %}
+		<a href="/link">{% trans 'Links' %}</a>
+		<a href="/apitest">{% trans 'API' %}</a>
+	{% endifequal %}
+
+{%endblock menu%}
+
+{% block content %}
+	<a href="/category/new/input">{% trans 'new' %}</a>
+	<br \>
+	<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+	<tr><td colspan=7><hr noshade></td></tr>
+	<tr>
+	<th>{%trans 'key_name' %}</th>
+	<th>{%trans 'index' %}</th>
+	<th>{%trans 'name(category)' %}</th>
+	<th>{%trans 'description(category)' %}</th>
+	<th>{%trans 'etc' %}</th>
+	</tr>
+	<tr><td colspan=7><hr noshade></td></tr>
+	{%for b in categories %}
+		<tr>
+		{% ifequal b.key_name keytodel %}
+			<li><a href="/category/{{ b.key_name }}">[{{ b.key_name }}]</a>[{{b.index}}] {{b.nameen}} - <a href="/category/{{ b.key_name }}/update/input">modify</a> <a href="/category/{{ b.key_name }}/del">yes<a/> <a href="/category/{{ b.key_name }}">no<a/>
+		{% else %}
+			<td width="1%" align=center><a href="/category/{{ b.key_name }}">{{ b.key_name }}</a></td>
+			<td width="1%" align=center>{{b.index}}</td>
+			<td width="5%" align=center>
+				<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+				<tr>
+				<td align=center>{{b.nameen}}</td><th>(en)</th>
+				</tr>
+				<tr>
+				<td align=center>{{b.nameko}}</td><th>(ko)</th>
+				</tr>
+				<tr>
+				<td align=center>{{b.nameja}}</td><th>(ja)</th>
+				</tr>
+				</TABLE>
+			</td>
+			<td width="5%" align=center>
+				<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+				<tr>
+				<td align=center>{{b.descriptionen}}</td><th>(en)</th>
+				</tr>
+				<tr>
+				<td align=center>{{b.descriptionko}}</td><th>(ko)</th>
+				</tr>
+				<tr>
+				<td align=center>{{b.descriptionja}}</td><th>(ja)</th>
+				</tr>
+				</TABLE>
+			</td>
+			<td width="5%" align=center>
+				<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+				<tr>
+				<a href="/category/{{ b.key_name }}">{%trans 'show' %}</a>  /
+				<a href="/category/{{ b.key_name }}/update/input">{%trans 'update' %}</a> / 
+				<a href="/category?del={{b.key_name}}">{%trans 'del' %}<a/>
+				</tr>
+				<tr>
+				{% ifequal b.visible 1 %}
+					<th>{%trans 'visible' %}</th><td align=center>YES</td>
+				{% else %}
+					<th>{%trans 'visible' %}</th><td align=center>NO</td>
+				{% endifequal %}
+				</tr>
+				<tr>
+				<th>{%trans 'version' %}</th><td align=center>{{b.version}}</td>
+				</tr>
+				<tr>
+				{% ifequal langsupport 1 %} 
+				<tr>
+					<th>{%trans 'native(en)' %}</th><td align=center>{{ b.supportlangen }}</td>
+					<th>{%trans 'native(ja)' %}</th><td align=center>{{ b.supportlangja }}</td>
+					<th>{%trans 'native(ko)' %}</th><td align=center>{{ b.supportlangko }}</td>
+				</tr>
+				<tr>
+					<th>{%trans 'tostudy(en)' %}</th><td align=center>{{ b.supporttostudyen }}</td>
+					<th>{%trans 'tostudy(ja)' %}</th><td align=center>{{ b.supporttostudyja }}</td>
+					<th>{%trans 'tostudy(ko)' %}</th><td align=center>{{ b.supporttostudyko }}</td>
+				</tr>
+				{% endifequal %}
+				</tr>
+
+				</TABLE>
+			</td>
+		{% endifequal %}
+		<br \>
+		</tr>
+		<tr><td colspan=8><hr></td></tr>
+
+	{%endfor%}
+	</table>
+	</ul>
+{% endblock content %}
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	<a href="/category">{% trans 'Categories' %}</a>
+	<a href="/story">{% trans 'Stories' %}</a>
+	<a href="/page">{% trans 'Pages' %}</a>
+	<a href="/content">{% trans 'Contents' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<form action="./" method="post" enctype="multipart/form-data">
+	en:English / ko:한국어 / ja:日本語 (<a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>)<br \>
+	<table>
+	{{form.as_table}}
+	</table>
+	<input type="submit" name="submit" id="submit" value="{% trans 'submit' %}" />
+	<input type="button" name="go_home" id="go_home" value="{% trans 'Go home' %}"
+	onClick="parent.location='/'"/>
+	</form>
+{% endblock content %}
+{% block script %}{% endblock script %}

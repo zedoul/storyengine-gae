@@ -1,0 +1,15 @@
+{% load i18n %}
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="{{ static_path.css }}/base.css" type="text/css" rel="stylesheet">
+	{% block css %}{% endblock css%}
+	<title>{% block title %}{{APP_TITLE}}{% endblock title%}</title>
+</head>
+<body>
+	<div id="logo"><a href="/">{{APP_TITLE}}</a></div>
+	<div id="menu">{% block menu %}{% endblock menu %}</div>
+	<div id="content">{% block content%}{% endblock content %}</div>
+	{% block script %}{% endblock script %}
+</body>
+</html>

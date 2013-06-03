@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<ul/>
+	Key : {{keyid}}
+	</ul>
+	<ul/>
+	Created : {{receipt.created}}
+	</ul>
+	<ul/>
+	StoryID : <a href="/story/{{receipt.storyID}}">{{receipt.storyID}}</a>
+	</ul>
+	<ul>
+	{{receipt.before}}<br />
+	- {{receipt.cost}}<br />
+	----------<br />
+	= {{receipt.after}}<br />
+	</ul>
+	<ul/>
+	From : <a href="/{{receipt.fromwhom}}">{{receipt.fromwhom}}</a>
+	</ul>
+	<ul/>
+	To : <a href="/{{receipt.towhom}}">{{receipt.towhom}}</a>
+	</ul>
+
+{% endblock content %}
+

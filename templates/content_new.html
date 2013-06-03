@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	<a href="/story">{% trans 'Stories' %}</a>
+	{% trans 'Contents' %}
+	<a href="/storysession">{% trans 'StorySessions' %}</a>
+
+{%endblock menu%}
+
+{% block content %}
+	<a href="/content/new/input">{% trans 'new' %}</a>
+	<br \>
+{% endblock content %}
+

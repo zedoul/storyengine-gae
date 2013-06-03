@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<a href="/content/{{keyid}}/update/input">{% trans 'update' %}</a>
+	<a href="/content/{{keyid}}/hide">{% trans 'hide' %}</a>
+	<a href="/content/{{keyid}}/del">{% trans 'del' %}</a>
+
+	<br \>
+	{% if registered %}
+		<a href="/content/{{keyid}}/deregister">{% trans 'deregister' %}</a>
+	{% else %}
+		<a href="/content/{{keyid}}/register">{% trans 'register' %}</a>
+	{% endif %}
+	<br \>
+
+	<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>Content</th>
+	<td>({{keyid}})</td>
+	</tr>
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>index</th>
+	<td>{{content.index}}</td>
+	<th>visible</th>
+	<td>{{content.visible}}</td>
+	<th>version</th>
+	<td>{{content.version}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>created</th>
+	<td>({{content.created}})</td>
+	<th>modified</th>
+	<td>({{content.modified}})</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>nameen</th>
+	<td>{{content.nameen}}</td>
+	<th>descriptionen</th>
+	<td>{{content.descriptionen}}</td>
+	</tr>
+	<tr>
+	<th>nameko</th>
+	<td>{{content.nameko}}</td>
+	<th>descriptionko</th>
+	<td>{{content.descriptionko}}</td>
+	</tr>
+	<tr>
+	<th>nameja</th>
+	<td>{{content.nameja}}</td>
+	<th>descriptionja</th>
+	<td>{{content.descriptionja}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>part</th>
+	<td>{{content.part}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>Photo</th>
+	<td><img src="/photo?img_id={{keyid}}" width="120px" height="180px"></img></td>
+	</tr>
+
+	<tr>
+	<th>Thumb</th>
+	<td><img src="/thumb?img_id={{keyid}}" width="44px" height="44px"></img></td>
+	</tr>
+
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+	<th>price</th>
+	<td>{{content.price}}</td>
+	<th>score</th>
+	<td>{{content.score}}</td>
+	</tr>
+	<tr><td colspan=8><hr></td></tr>
+	<tr>
+		<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+		<tr>
+		<th>Used by</th>
+		</tr>
+		{%for b in pages %}
+			<tr>
+			<td><a href="/page/{{ b.keyid }}">{{ b.keyid }}</a> - <a href="/story/{{ b.story.keyid }}">[{{b.story.main_categoryid}}]{{b.story.nameen}}/{{b.story.nameko}}/{{b.story.nameja}}</a></td>
+			</tr>
+		{%endfor%}
+		</table>
+	</table>
+
+{% endblock content %}
+
