@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	<a href="/story">{% trans 'Stories' %}</a>
+	{% trans 'Contents' %}
+{%endblock menu%}
+
+{% block content %}
+	<br />
+	Do you want to create <a href="/page/{{pageid}}/content/new/input">{% trans 'new' %}</a>?
+
+	<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th></th>
+	<th>{%trans 'key_name'%}</th>
+	<th>{%trans 'name(content)'%}</th>
+	<th>{%trans 'photo'%}</th>
+	<th>{%trans 'thumbnail'%}</th>
+	</tr>
+	<tr><td colspan=8><hr noshade></td></tr>
+	{%for b in contents %}
+		<td width="5%" align=center>
+			<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+			<tr>
+			<a href="/page/{{ pageid }}/content/{{b.keyid}}/add">{% trans 'add' %}<a/>
+			</tr>
+			</TABLE>
+		</td>
+		<td width="1%" align=center><a href="/content/{{ b.keyid }}">{{ b.keyid }}</a></td>
+		<td width="5%" align=center>
+		<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+		<tr>
+		<td align=center>{{b.nameen}}</td><th>(en)</th>
+		</tr>
+		<tr>
+		<td align=center>{{b.nameko}}</td><th>(ko)</th>
+		</tr>
+		<tr>
+		<td align=center>{{b.nameja}}</td><th>(ja)</th>
+		</tr>
+		</TABLE>
+		</td>
+		<td width="5%" align=center>
+			<img src="/photo?img_id={{b.keyid}}" width="121px" height="120px"></img>
+		</td>
+		<td width="5%" align=center>
+			<img src="/thumb?img_id={{b.keyid}}" width="50px" height="20px"></img>
+		</td>
+
+		</tr>
+		<tr><td colspan=8><hr></td></tr>
+	{%endfor%}
+	</TABLE>
+
+{% endblock content %}
+

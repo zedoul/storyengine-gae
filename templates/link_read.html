@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<a href="/accountstorysessionlink/{{keyid}}/submit">{% trans 'submit' %}</a>
+
+	<ul/>
+	Key : {{keyid}}
+	</ul>
+
+	<ul/>
+	Account : {{link.account.name}}
+	</ul>
+
+	<ul/>
+	StoryID : <a href="/story/{{link.storyID}}">{{link.storyID}}</a>
+	</ul>
+	<ul/>
+	PageID : <a href="/page/{{link.pageID}}">{{link.pageID}}</a>
+	</ul>
+
+	<ul/>
+	score : {{link.score}}
+	</ul>
+
+	<ul/>
+	TargetIDs :
+	{%for b in link.targetIDs %}
+		<li><a href="/content/{{ b }}">{{ b }}</a>
+	{%endfor%}
+	</ul>
+
+	<ul/>
+	ChoiceIDs :
+	{%for b in link.choiceIDs %}
+		<li><a href="/content/{{ b }}">{{ b }}</a>
+	{%endfor%}
+	</ul>
+
+{% endblock content %}
+

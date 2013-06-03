@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<a href="/category/{{keyid}}/update/input">{% trans 'update' %}</a>
+
+	<ul/>
+	Key : {{keyid}}
+	</ul>
+	<ul/>
+	created : {{category.created}}
+	</ul>
+	<ul/>
+	modified : {{category.modified}}
+	</ul>
+	<ul/>
+	index : {{category.index}}
+	</ul>
+	<ul/>
+	price : {{category.price}}
+	</ul>
+	<ul/>
+	Nameen : {{category.nameen}}
+	</ul>
+	<ul/>
+	Nameko : {{category.nameko}}
+	</ul>
+	<ul/>
+	Nameja : {{category.nameja}}
+	</ul>
+	<ul/>
+	visible : {{category.visible}}
+	</ul>
+	<ul/>
+	version : {{category.version}}
+	</ul>
+	<ul/>
+	Descriptionen : {{category.descriptionen}}
+	</ul>
+	<ul/>
+	Descriptionko : {{category.descriptionko}}
+	</ul>
+	<ul/>
+	Descriptionja : {{category.descriptionja}}
+	</ul>
+	<ul/>
+	expiration_days : {{category.expiration_days}}
+	</ul>
+	<ul/>
+	expiration_mins : {{category.expiration_mins}}
+	</ul>
+
+	<ul/>
+	en support : {{category.supportlangen}}
+	</ul>
+	<ul/>
+	ja support : {{category.supportlangja}}
+	</ul>
+	<ul/>
+	ko support : {{category.supportlangko}}
+	</ul>
+	<ul/>
+	<a href="/category/{{keyid}}/langnativeadd?lang=en">{% trans 'en add' %}</a> / 
+	<a href="/category/{{keyid}}/langnativeadd?lang=ja">{% trans 'ja add' %}</a> / 
+	<a href="/category/{{keyid}}/langnativeadd?lang=ko">{% trans 'ko add' %}</a>
+	</ul>
+	<ul/>
+	<a href="/category/{{keyid}}/langnativedel?lang=en">{% trans 'en del' %}</a> / 
+	<a href="/category/{{keyid}}/langnativedel?lang=ja">{% trans 'ja del' %}</a> / 
+	<a href="/category/{{keyid}}/langnativedel?lang=ko">{% trans 'ko del' %}</a>
+	</ul>
+	<ul/>
+	en tostudy : {{category.supporttostudyen}}
+	</ul>
+	<ul/>
+	ja tostudy : {{category.supporttostudyja}}
+	</ul>
+	<ul/>
+	ko tostudy : {{category.supporttostudyko}}
+	</ul>
+	<ul/>
+	<a href="/category/{{keyid}}/langtostudyadd?lang=en">{% trans 'en add' %}</a> / 
+	<a href="/category/{{keyid}}/langtostudyadd?lang=ja">{% trans 'ja add' %}</a> / 
+	<a href="/category/{{keyid}}/langtostudyadd?lang=ko">{% trans 'ko add' %}</a>
+	</ul>
+	<ul/>
+	<a href="/category/{{keyid}}/langtostudydel?lang=en">{% trans 'en del' %}</a> / 
+	<a href="/category/{{keyid}}/langtostudydel?lang=ja">{% trans 'ja del' %}</a> / 
+	<a href="/category/{{keyid}}/langtostudydel?lang=ko">{% trans 'ko del' %}</a>
+	</ul>
+	<ul/>
+	Stories :
+	<a href="/category/{{keyid}}/story/add/input">{% trans 'add' %}</a>
+	{%for b in stories %}
+		<br \>
+		<a href="/story/{{ b.keyid }}">{{ b.keyid }}</a> - {{b.nameen}}/{{b.nameko}}/{{b.nameja}} - <a href="/category/{{keyid}}/story/del/{{ b.keyid }}">delete</a>
+	{%endfor%}
+	</ul>
+{% endblock content %}
+

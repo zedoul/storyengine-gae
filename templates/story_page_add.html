@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+{%endblock menu%}
+{% block content %}
+	<form action="./" method="post">
+	<table>
+	{{form.as_table}}
+	</table>
+	<input type="submit" name="submit" id="submit" value="{% trans 'Save' %}" />
+	<input type="button" name="go_home" id="go_home" value="{% trans 'Go home' %}" onClick="parent.location='/'"/>
+	</form>
+{% endblock content %}
+{% block script %}{% endblock script %}

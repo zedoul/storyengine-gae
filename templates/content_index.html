@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	<a href="/category">{% trans 'Categories' %}</a>
+	<a href="/story">{% trans 'Stories' %}</a>
+	<a href="/page">{% trans 'Pages' %}</a>
+	<a href="/play/new/input">{% trans 'Play' %}</a>
+
+	{% trans 'Contents' %}
+	{% ifequal mode 2 %}
+		<a href="/link">{% trans 'Links' %}</a>
+		<a href="/apitest">{% trans 'API' %}</a>
+	{% endifequal %}
+{%endblock menu%}
+
+{% block content %}
+	<a href="/content/search/input">{% trans 'search' %}</a>
+	<a href="/content/new/input">{% trans 'new' %}</a>
+	<br \>
+	Total({{size}})
+	<a href="/content?mode=all">{% trans 'all' %}</a>
+	<a href="/content?mode=less">{% trans 'less' %}</a>
+	<br \>
+	<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
+	<tr><td colspan=8><hr noshade></td></tr>
+	<tr>
+	<th>{%trans 'key_name'%}</th>
+	<th>{%trans 'index'%}</th>
+	<th>{%trans 'part'%}</th>
+	<th>{%trans 'name(content)'%}</th>
+	<th>{%trans 'description(content)'%}</th>
+	<th>{%trans 'thumbnail'%}</th>
+	<th>{%trans 'photo'%}</th>
+	<th>{%trans 'etc'%}</th>
+	</tr>
+	<tr><td colspan=8><hr noshade></td></tr>
+	{%for b in contents %}
+		{% ifequal b.keyid keytodel %}
+			<li><a href="/content/{{ b.keyid }}">{{ b.nameen }}</a> &nbsp;&nbsp;&nbsp;&nbsp;{{b.part}}. {{b.nameko}} - <a href="/content/{{ b.keyid }}/update/input">modify</a> <a href="/content/{{ b.keyid }}/del">yes<a/> <a href="/content">no<a/><br \>
+		{% else %}
+			<td width="1%" align=center><a href="/content/{{ b.keyid }}">{{ b.keyid }}</a></td>
+			<td width="1%" align=center>{{b.index}}</td>
+			<td width="1%" align=center>{{b.part}}</td>
+			<td width="5%" align=center>
+			<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+			<tr>
+			<td align=center>{{b.nameen}}</td><th>(en)</th>
+			</tr>
+			<tr>
+			<td align=center>{{b.nameko}}</td><th>(ko)</th>
+			</tr>
+			<tr>
+			<td align=center>{{b.nameja}}</td><th>(ja)</th>
+			</tr>
+			</TABLE>
+			</td>
+			<td width="5%" align=center>
+			<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+			<tr>
+			<td align=center>{{b.descriptionen}}</td><th>(en)</th>
+			</tr>
+			<tr>
+			<td align=center>{{b.descriptionko}}</td><th>(ko)</th>
+			</tr>
+			<tr>
+			<td align=center>{{b.descriptionja}}</td><th>(ja)</th>
+			</tr>
+			</TABLE>
+			</td>
+			<td width="5%" align=center>
+				<img src="/thumb?img_id={{b.keyid}}" width="175px" height="84px"></img>
+			</td>
+			<td width="5%" align=center>
+				<img src="/photo?img_id={{b.keyid}}" width="484px" height="481px"></img>
+			</td>
+			<td width="5%" align=center>
+				<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="5">
+				<tr>
+				<a href="/content/{{ b.key_name }}">show</a>  /
+				<a href="/content/{{ b.key_name }}/update/input">modify</a> / 
+				<a href="/content?del={{b.key_name}}">del<a/>
+				</tr>
+				<tr>
+				{% ifequal b.visible 1 %}
+					<th>visible</th><td align=center>Released</td>
+				{% else %}
+					<th>visible</th><td align=center>Hidden</td>
+				{% endifequal %}
+				</tr>
+				<tr>
+				<th>version</th><td align=center>{{b.version}}</td>
+				</tr>
+				</TABLE>
+			</td>
+		{% endifequal %}
+		</tr>
+		<tr><td colspan=8><hr></td></tr>
+	{%endfor%}
+	</ul>
+{% endblock content %}
+

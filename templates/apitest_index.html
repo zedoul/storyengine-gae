@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	<a href="/category">{% trans 'Categories' %}</a>
+	<a href="/story">{% trans 'Stories' %}</a>
+	<a href="/content">{% trans 'Contents' %}</a>
+	<a href="/link">{% trans 'Links' %}</a>
+	{% trans 'API' %}
+
+{%endblock menu%}
+
+{% block content %}
+	account : 
+	<a href="/apitest/account/login/input">{% trans 'login' %}</a>
+	<a href="/apitest/account/read/input">{% trans 'read' %}</a>
+	<a href="/apitest/account/submit/input">{% trans 'submit' %}</a>
+	<a href="/apitest/account/convert/input">{% trans 'convert' %}</a>
+	<br \>
+
+	category :
+	<a href="/apitest/category/index/input">{% trans 'index' %}</a>
+	<a href="/apitest/category/read/input">{% trans 'read' %}</a>
+	<br \>
+
+	story : 
+	<a href="/apitest/story/read/input">{% trans 'read' %}</a>
+	<a href="/apitest/story/purchase/input">{% trans 'purchase' %}</a>
+	<br \>
+
+	page :
+	<a href="/apitest/page/read/input">{% trans 'read' %}</a>
+	<br \>
+
+	content :
+	<a href="/apitest/content/read/input">{% trans 'read' %}</a>
+	<br \>
+
+	receipt :
+	<a href="/apitest/receipt/submit/input">{% trans 'submit' %}</a>
+	<br \>
+
+	----------------------------------------------------------------
+	<br \>
+
+	account (reserved) : 
+	<a href="/apitest/account/gift/input">{% trans 'gift' %}</a>
+	<br \>
+
+	story (reserved) : 
+	<a href="/apitest/story/index/input">{% trans 'index' %}</a>
+	<br \>
+
+	category link (reserved) :
+	<a href="/apitest/categorylink/new/input">{% trans 'new' %}</a>
+	<a href="/apitest/categorylink/read/input">{% trans 'read' %}</a>
+	<br \>
+
+	story link (reserved) :
+	<a href="/apitest/storylink/new/input">{% trans 'new' %}</a>
+	<a href="/apitest/storylink/read/input">{% trans 'read' %}</a>
+	<br \>
+
+	page link (reserved) :
+	<a href="/apitest/pagelink/read/input">{% trans 'read' %}</a>
+	<a href="/apitest/pagelink/submit/input">{% trans 'submit' %}</a>
+	<br \>
+
+	content link (reserved) :
+	<a href="/apitest/pagelink/read/input">{% trans 'read' %}</a>
+	<br \>
+
+	link (deprecated) :
+	<a href="/apitest/sessionlink/read/input">{% trans 'read' %}</a>
+	<a href="/apitest/sessionlink/submit/input">{% trans 'submit' %}</a>
+	<br \>
+
+	storysession (deprecated) :
+	<a href="/apitest/storysession/new/input">{% trans 'new' %}</a>
+	<a href="/apitest/storysession/myindex/input">{% trans 'index(my)' %}</a>
+	<a href="/apitest/storysession/friendsindex/input">{% trans 'index(friends)' %}</a>
+	<a href="/apitest/storysession/storyindex/input">{% trans 'index(story)' %}</a>
+	<a href="/apitest/storysession/read/input">{% trans 'read' %}</a>
+	<a href="/apitest/storysession/register/input">{% trans 'register' %}</a>
+	<br \>
+
+	{%if form %}
+	<ul/>
+	Input Example : {{input|linebreaks}}
+	</ul>
+	<ul/>
+	Output Example : {{output|linebreaks}}
+	</ul>
+	<form action="./" method="post">
+	<table>
+	{{form.as_table}}
+	</table>
+	<input type="submit" name="submit" id="submit" value="{% trans 'submit' %}" />
+	<input type="button" name="go_home" id="go_home" value="{% trans 'Go home' %}"
+	onClick="parent.location='/'"/>
+	</form>
+	<ul/>
+	Result : {{result}}
+	</ul>
+	{% endif %}
+
+{% endblock content %}
+

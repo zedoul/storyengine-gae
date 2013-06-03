@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+	<a href="/category">{% trans 'Categories' %}</a>
+	<a href="/story">{% trans 'Stories' %}</a>
+	<a href="/content">{% trans 'Contents' %}</a>
+	{% trans 'Links' %}
+	<a href="/apitest">{% trans 'API' %}</a>
+	<br \>
+	<a href="/link/accountcategory">{% trans 'Categorylinks' %}</a>
+	<a href="/link/accountstory">{% trans 'Storylinks' %}</a>
+	<a href="/link/accountpage">{% trans 'Pagelinks' %}</a>
+	<a href="/link/accountcontent">{% trans 'Contentlinks' %}</a>
+{%endblock menu%}
+
+{% block content %}
+	<br \>
+{% endblock content %}
+
+{% block script %}{% endblock script %}

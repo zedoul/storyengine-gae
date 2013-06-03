@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block menu %}
+	<a href="/">{% trans 'Home' %}</a>
+
+{%endblock menu%}
+{% block content %}
+	<a href="/account/{{keyid}}/update/input">{% trans 'update' %}</a>
+
+	<ul/>
+	Key : {{keyid}}
+	</ul>
+
+	<ul/>
+	Name : {{account.name}}
+	</ul>
+
+	<ul/>
+	Money : {{account.money}}
+	</ul>
+
+	<ul/>
+	Candy : {{account.candy}}
+	</ul>
+
+	<ul/>
+	Score : {{account.score}}
+	</ul>
+
+	<ul/>
+	Expiration(score) : {{account.score_expiration}}
+	</ul>
+
+	<ul/>
+	Expiration(account) : {{account.expiration_date}}
+	</ul>
+
+	<ul/>
+	FacebookID : {{account.facebookID}}
+	</ul>
+
+	<ul/>
+	Stories (Purchased)
+	{%for b in account.storyIDs %}
+		<br \>
+		<a href="/story/{{ b }}">{{ b }}</a>
+	{%endfor%}
+	</ul>
+
+	<ul/>
+	Receipts
+	<a href="/receipt/new/input">new</a>
+	{%for b in account.receipts %}
+		<br \>
+		<a href="/receipt/{{ b }}">[{{b.receipt_type}}:{{b.dataID}}]</a> {{b.before}}-{{b.cost}}={{b.after}} created:{{ b.created }}
+	{%endfor%}
+	</ul>
+
+	<ul/>
+	Createds
+	{%for b in createds%}
+		<br \>
+		<a href="/story/{{ b.keyid }}">{{ b.nameen }} {{b.nameko}}</a>
+	{%endfor%}
+	</ul>
+
+	<ul/>
+	<img src="/thumb?img_id={{keyid}}" width="50px" height="50px"></img>
+	</ul>
+
+{% endblock content %}
+{% block script %}{% endblock script %}
