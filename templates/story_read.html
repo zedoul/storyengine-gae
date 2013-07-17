@@ -13,6 +13,8 @@
 	<tr>
 	<th>{% trans 'Story' %}</th>
 	<td>({{keyid}})</td>
+	<th>{% trans 'Creator' %}</th>
+	<td><a href="/{{creatorid}}/">({{creatorid}})</a></td>
 	</tr>
 	<tr><td colspan=8><hr noshade></td></tr>
 	<tr>
@@ -58,10 +60,11 @@
 	</tr>
 	<tr><td colspan=16><hr noshade></td></tr>
 	<tr>
+
 	<th>{% trans 'pages' %}</th>
+	<td>
+	<a href="/story/{{keyid}}/pageadd">{% trans 'add' %}</a>
 	{% ifequal pagesize 0 %}
-		<td>
-		<a href="/story/{{keyid}}/pageadd">{% trans 'add' %}</a>
 		<a href="/story/{{keyid}}/pageimport/input">{% trans 'import' %}</a>
 		<br \>
 
@@ -69,8 +72,8 @@
 		<a href="/story/{{keyid}}/level/2">{% trans '16' %}</a>
 		<a href="/story/{{keyid}}/level/3">{% trans '24' %}</a>
 		<br \>
-		</td>
 	{% endifequal %}
+	</td>
 	</tr>
 	<tr>
 		<table BORDER="0" CELLPADDING="0" CELLSPACING="10">
@@ -83,6 +86,8 @@
 					<table BORDER="0" CELLPADDING="0" CELLSPACING="10" width="200px">
 					<tr>
 					ID:<a href="/page/{{ b.keyid }}">{{ b.keyid }}</a>
+					<br />
+					{%trans 'Creator'%}:<a href="/{{ b.creatorid }}/">{{ b.creatorid }}</a>
 					<br />
 					{%trans 'index' %}:<a href="/page/{{ b.keyid }}">{{ b.index }}</a> / 
 					{% ifequal pagepriceshow 1 %}

@@ -350,11 +350,4 @@ class Account (AccountModel):
 	@staticmethod
 	def recommended_users():
 		return Rank.getter()
-#		ret = []
-#		for i in range(1,CACHE_RECOMMENDED_ACCOUNTNUM+1):
-#			key = 'recentjoinedaccount'+str(i)
-#			det = memcache.get(key)
-#			if None is not det:
-#				ret.append(det)
-#		return ret
 

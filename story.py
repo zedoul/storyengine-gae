@@ -146,6 +146,7 @@ class StoryReadHandler(storyengine.SessionHandler):
 		pagelist = []
 		for page in story.pages:
 			page.keyid = str(page.key().id())
+			page.creatorid = str(page.creator.key().name())
 			page.contentsize = page.contents.count()
 			if page.contents.count() > 0:
 				try:
@@ -199,6 +200,7 @@ class StoryReadHandler(storyengine.SessionHandler):
 			'pagescoreshow':STORY_PAGE_SCORE_SHOW,
 			'pagecontentsizeshow':STORY_PAGE_CONTENTSIZE_SHOW,
 			'pagenextshow':STORY_PAGE_NEXT_SHOW,
+			'creatorid':story.creator.key().name(),
 			'keyid':story.key().id()}
 		self.render_to_response('story_read.html',context)
 
